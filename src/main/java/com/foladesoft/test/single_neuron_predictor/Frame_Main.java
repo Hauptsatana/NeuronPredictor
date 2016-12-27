@@ -5,6 +5,12 @@
  */
 package com.foladesoft.test.single_neuron_predictor;
 
+import java.awt.GridBagConstraints;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.JPanel;
+
 /**
  *
  * @author haupt_000
@@ -26,12 +32,15 @@ public class Frame_Main extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        pnl_Chart = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jButton1.setText("Click ME");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -39,33 +48,35 @@ public class Frame_Main extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(jButton1, gridBagConstraints);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(22, 22, 22))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(jScrollPane1, gridBagConstraints);
+
+        pnl_Chart.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnl_Chart.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(pnl_Chart, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -73,16 +84,49 @@ public class Frame_Main extends javax.swing.JFrame {
     private double[] series = new double[] { 
         2.64, 4.66, 1.87, 4.05, 1.73, 5.31, 1.67, 5.96, 0.13, 5.64, 1.52, 4.07, 0.22, 4.79, 0.73 };
     
+	private double[] series1 = new double[] {
+		2.54, 5.28, 0.78, 5.72, 0.58, 4.65, 0.91, 5.80, 1.76, 5.67, 1.73, 5.70, 1.03, 5.00, 1.79 };
+	
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PredictorNeuron pn = new PredictorNeuron(0.9);
-        for (int i = 3; i < 13; i++) {
-            double err = pn.learn(series[i-3], series[i-2], series[i-1], series[i]);
-            jTextArea1.append("Step " + (i - 2) + ": " + err + "\n");
-        }
-        double test1 = pn.predictNext(series[10], series[11], series[12]);
-        jTextArea1.append("Test: " + test1 + "\n");
-        double test2 = pn.predictNext(series[11], series[12], series[13]);
-        jTextArea1.append("Test: " + test2 + "\n");
+        PredictorNeuron pn = new PredictorNeuron(0.2);
+		
+		List<Double> errors = pn.learn(Arrays.stream(series, 0, 13).boxed().collect(Collectors.toList()));
+		jTextArea1.setText(null);
+		for (int i = 0; i < errors.size(); i++) {
+			jTextArea1.append("Step " + (i + 1) + ": " + errors.get(i) + "\n");
+		}
+		
+		int chartSize = 20;
+		Double[][] data = new Double[chartSize][];
+		for (int i = 0; i < chartSize; i++) {
+			data[i] = new Double[2];
+			data[i][0] = (double)i;
+			data[i][1] = errors.get(i);
+		}
+		
+		LineChart lineChart = new LineChart(data, "XXX");
+		
+			
+		JPanel drawPanel = new JPanel();
+		//pnl_Chart.setLayout(new javax.swing.BoxLayout(pnl_Chart, javax.swing.BoxLayout.PAGE_AXIS));
+		
+		GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+		
+		pnl_Chart.add(drawPanel, gridBagConstraints);
+		lineChart.draw(drawPanel);
+		
+		//this.revalidate();
+		//this.repaint();
+		
+        //double test1 = pn.predictNext(series1[10], series1[11], series1[12]);
+        //jTextArea1.append("Test: " + test1 + "\n");
+        //double test2 = pn.predictNext(series1[11], series1[12], series1[13]);
+        //jTextArea1.append("Test: " + test2 + "\n");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -124,5 +168,6 @@ public class Frame_Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JPanel pnl_Chart;
     // End of variables declaration//GEN-END:variables
 }
