@@ -40,12 +40,16 @@ public class Frame_Main extends javax.swing.JFrame {
         pnl_Chart = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         btn_Calc = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        tfld_Actual1 = new javax.swing.JTextField();
-        tfld_Actual2 = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
         tfld_Predicted1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        tfld_Actual2 = new javax.swing.JTextField();
+        tfld_Actual1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         tfld_Predicted2 = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        spn_Speed = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
@@ -64,7 +68,7 @@ public class Frame_Main extends javax.swing.JFrame {
         getContentPane().add(pnl_Chart, gridBagConstraints);
 
         java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
-        jPanel1Layout.columnWidths = new int[] {0, 10, 0, 10, 0, 10, 0};
+        jPanel1Layout.columnWidths = new int[] {0, 10, 0};
         jPanel1Layout.rowHeights = new int[] {0, 6, 0};
         jPanel1.setLayout(jPanel1Layout);
 
@@ -76,58 +80,104 @@ public class Frame_Main extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel1.add(btn_Calc, gridBagConstraints);
 
-        jLabel1.setText("Фактические");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        jPanel1.add(jLabel1, gridBagConstraints);
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Тестовые данные"));
+        java.awt.GridBagLayout jPanel2Layout = new java.awt.GridBagLayout();
+        jPanel2Layout.columnWidths = new int[] {0, 10, 0, 10, 0};
+        jPanel2Layout.rowHeights = new int[] {0, 5, 0};
+        jPanel2.setLayout(jPanel2Layout);
 
-        jLabel2.setText("Спрогнозированные");
+        tfld_Predicted1.setColumns(1);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        jPanel1.add(jLabel2, gridBagConstraints);
-
-        tfld_Actual1.setColumns(1);
-        tfld_Actual1.setText("4.79");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel1.add(tfld_Actual1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        jPanel2.add(tfld_Predicted1, gridBagConstraints);
+
+        jLabel1.setText("Фактические");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 0, 0);
+        jPanel2.add(jLabel1, gridBagConstraints);
 
         tfld_Actual2.setColumns(1);
         tfld_Actual2.setText("0.73");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel1.add(tfld_Actual2, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 10);
+        jPanel2.add(tfld_Actual2, gridBagConstraints);
 
-        tfld_Predicted1.setColumns(1);
+        tfld_Actual1.setColumns(1);
+        tfld_Actual1.setText("4.79");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        jPanel2.add(tfld_Actual1, gridBagConstraints);
+
+        jLabel2.setText("Спрогнозированные");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 5, 0);
+        jPanel2.add(jLabel2, gridBagConstraints);
+
+        tfld_Predicted2.setColumns(1);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel1.add(tfld_Predicted1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 10);
+        jPanel2.add(tfld_Predicted2, gridBagConstraints);
 
-        tfld_Predicted2.setColumns(1);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 2.0;
+        jPanel1.add(jPanel2, gridBagConstraints);
+
+        java.awt.GridBagLayout jPanel3Layout = new java.awt.GridBagLayout();
+        jPanel3Layout.columnWidths = new int[] {0, 10, 0};
+        jPanel3Layout.rowHeights = new int[] {0};
+        jPanel3.setLayout(jPanel3Layout);
+
+        jLabel3.setText("Скорость");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 0);
+        jPanel3.add(jLabel3, gridBagConstraints);
+
+        spn_Speed.setModel(new javax.swing.SpinnerNumberModel(0.2d, 0.1d, 1.0d, 0.1d));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel1.add(tfld_Predicted2, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 10);
+        jPanel3.add(spn_Speed, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        jPanel1.add(jPanel3, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -147,37 +197,41 @@ public class Frame_Main extends javax.swing.JFrame {
 		2.54, 5.28, 0.78, 5.72, 0.58, 4.65, 0.91, 5.80, 1.76, 5.67, 1.73, 5.70, 1.03, 5.00, 1.79 };
 	
     private void btn_CalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CalcActionPerformed
-        PredictorNeuron pn = new PredictorNeuron(0.2);
+        
+        pnl_Chart.removeAll();
+        
+        double speed = (double)spn_Speed.getValue();
+        PredictorNeuron pn = new PredictorNeuron(speed);
 		
-		List<Double> errors = pn.learn(Arrays.stream(series, 0, 13).boxed().collect(Collectors.toList()));
-		
-		int chartSize = errors.size() / 10;
-		Double[][] data = new Double[chartSize][];
-		for (int i = 0; i < chartSize; i++) {
-			data[i] = new Double[2];
-			data[i][0] = i * 10.0;
-			data[i][1] = errors.get(i * 10);
-		}
-		
-		// Draw learning progress chart
-		LineChart lineChart = new LineChart(data, 0, 1, "Learning progress", 
-			"Iterations", "Error", 3, Color.RED);
-		//pnl_Chart.setLayout(new javax.swing.BoxLayout(pnl_Chart, javax.swing.BoxLayout.PAGE_AXIS));
-		
-		GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
+        List<Double> errors = pn.learn(Arrays.stream(series, 0, 13).boxed().collect(Collectors.toList()));
+
+        int chartSize = errors.size() / 10;
+        Double[][] data = new Double[chartSize][];
+        for (int i = 0; i < chartSize; i++) {
+                data[i] = new Double[2];
+                data[i][0] = i * 10.0;
+                data[i][1] = errors.get(i * 10);
+        }
+
+        // Draw learning progress chart
+        LineChart lineChart = new LineChart(data, 0, 1, "Learning progress", 
+                "Iterations", "Error", 3, Color.RED);
+        //pnl_Chart.setLayout(new javax.swing.BoxLayout(pnl_Chart, javax.swing.BoxLayout.PAGE_AXIS));
+
+        GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
 		
-		JPanel drawPanel = new JPanel(new BorderLayout());
+        JPanel drawPanel = new JPanel(new BorderLayout());
 
-		pnl_Chart.setLayout(new GridLayout(1, 1));
-		pnl_Chart.add(drawPanel);
-		
-		//pnl_Chart.add(drawPanel, gridBagConstraints);
-		lineChart.draw(drawPanel);
+        pnl_Chart.setLayout(new GridLayout(1, 1));
+        pnl_Chart.add(drawPanel);
+
+        //pnl_Chart.add(drawPanel, gridBagConstraints);
+        lineChart.draw(drawPanel);
 		
 		// Predict next values
         double test1 = pn.predictNext(series[10], series[11], series[12]);
@@ -225,8 +279,12 @@ public class Frame_Main extends javax.swing.JFrame {
     private javax.swing.JButton btn_Calc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel pnl_Chart;
+    private javax.swing.JSpinner spn_Speed;
     private javax.swing.JTextField tfld_Actual1;
     private javax.swing.JTextField tfld_Actual2;
     private javax.swing.JTextField tfld_Predicted1;
