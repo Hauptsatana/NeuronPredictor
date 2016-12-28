@@ -75,6 +75,10 @@ public class PredictorNeuron {
 
 			}
 			
+			dw1 /= seriesData.size() - 3;
+			dw2 /= seriesData.size() - 3;
+			dw3 /= seriesData.size() - 3;
+			
 			w1 -= speed * dw1;
 			w2 -= speed * dw2;
 			w3 -= speed * dw3;
@@ -83,10 +87,10 @@ public class PredictorNeuron {
 			res.add(errorCur);
 			
 			if (iterCount == 100) {
-				speed = 0.2;
+				speed = 0.1;
 			}
 			
-		} while (Math.abs(errorPrev - errorCur) > 1e-4 && iterCount < 2e5);
+		} while (Math.abs(errorPrev - errorCur) > 1e-3 && iterCount < 1e5);
 
 		return res;
 	}

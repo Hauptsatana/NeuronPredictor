@@ -24,7 +24,7 @@ public class LineChart {
     public LineChart(Double[][] data, String title) {
         this(data, 0, 1, title, "X", "Y", 2, Color.RED);
     }
-
+	
     public LineChart(Double[][] data, int dimX, int dimY,
                      String title, String xAxisLabel, String yAxisLabel,
                      int thickness, Color color) 
@@ -112,6 +112,6 @@ public class LineChart {
     public void draw(javax.swing.JPanel panel) {
         ChartPanel cpnl = new ChartPanel(chart);
         panel.add(cpnl);
-        //panel.getParent().validate();
+        panel.getParent().revalidate();
     }
 }

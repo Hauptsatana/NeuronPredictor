@@ -5,7 +5,10 @@
  */
 package com.foladesoft.test.single_neuron_predictor;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,41 +37,22 @@ public class Frame_Main extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         pnl_Chart = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        btn_Calc = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        tfld_Actual1 = new javax.swing.JTextField();
+        tfld_Actual2 = new javax.swing.JTextField();
+        tfld_Predicted1 = new javax.swing.JTextField();
+        tfld_Predicted2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
+        layout.columnWidths = new int[] {0};
+        layout.rowHeights = new int[] {0, 10, 0};
+        getContentPane().setLayout(layout);
 
-        jButton1.setText("Click ME");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(jButton1, gridBagConstraints);
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jScrollPane1, gridBagConstraints);
-
-        pnl_Chart.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnl_Chart.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -76,7 +60,82 @@ public class Frame_Main extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 10);
         getContentPane().add(pnl_Chart, gridBagConstraints);
+
+        java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
+        jPanel1Layout.columnWidths = new int[] {0, 10, 0, 10, 0, 10, 0};
+        jPanel1Layout.rowHeights = new int[] {0, 6, 0};
+        jPanel1.setLayout(jPanel1Layout);
+
+        btn_Calc.setText("Вычислить");
+        btn_Calc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CalcActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        jPanel1.add(btn_Calc, gridBagConstraints);
+
+        jLabel1.setText("Фактические");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        jPanel1.add(jLabel1, gridBagConstraints);
+
+        jLabel2.setText("Спрогнозированные");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        jPanel1.add(jLabel2, gridBagConstraints);
+
+        tfld_Actual1.setColumns(1);
+        tfld_Actual1.setText("4.79");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        jPanel1.add(tfld_Actual1, gridBagConstraints);
+
+        tfld_Actual2.setColumns(1);
+        tfld_Actual2.setText("0.73");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        jPanel1.add(tfld_Actual2, gridBagConstraints);
+
+        tfld_Predicted1.setColumns(1);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        jPanel1.add(tfld_Predicted1, gridBagConstraints);
+
+        tfld_Predicted2.setColumns(1);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        jPanel1.add(tfld_Predicted2, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 10);
+        getContentPane().add(jPanel1, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -87,27 +146,22 @@ public class Frame_Main extends javax.swing.JFrame {
 	private double[] series1 = new double[] {
 		2.54, 5.28, 0.78, 5.72, 0.58, 4.65, 0.91, 5.80, 1.76, 5.67, 1.73, 5.70, 1.03, 5.00, 1.79 };
 	
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_CalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CalcActionPerformed
         PredictorNeuron pn = new PredictorNeuron(0.2);
 		
 		List<Double> errors = pn.learn(Arrays.stream(series, 0, 13).boxed().collect(Collectors.toList()));
-		jTextArea1.setText(null);
-		for (int i = 0; i < errors.size(); i++) {
-			jTextArea1.append("Step " + (i + 1) + ": " + errors.get(i) + "\n");
-		}
 		
-		int chartSize = 20;
+		int chartSize = errors.size() / 10;
 		Double[][] data = new Double[chartSize][];
 		for (int i = 0; i < chartSize; i++) {
 			data[i] = new Double[2];
-			data[i][0] = (double)i;
-			data[i][1] = errors.get(i);
+			data[i][0] = i * 10.0;
+			data[i][1] = errors.get(i * 10);
 		}
 		
-		LineChart lineChart = new LineChart(data, "XXX");
-		
-			
-		JPanel drawPanel = new JPanel();
+		// Draw learning progress chart
+		LineChart lineChart = new LineChart(data, 0, 1, "Learning progress", 
+			"Iterations", "Error", 3, Color.RED);
 		//pnl_Chart.setLayout(new javax.swing.BoxLayout(pnl_Chart, javax.swing.BoxLayout.PAGE_AXIS));
 		
 		GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
@@ -117,17 +171,20 @@ public class Frame_Main extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
 		
-		pnl_Chart.add(drawPanel, gridBagConstraints);
+		JPanel drawPanel = new JPanel(new BorderLayout());
+
+		pnl_Chart.setLayout(new GridLayout(1, 1));
+		pnl_Chart.add(drawPanel);
+		
+		//pnl_Chart.add(drawPanel, gridBagConstraints);
 		lineChart.draw(drawPanel);
 		
-		//this.revalidate();
-		//this.repaint();
-		
-        //double test1 = pn.predictNext(series1[10], series1[11], series1[12]);
-        //jTextArea1.append("Test: " + test1 + "\n");
-        //double test2 = pn.predictNext(series1[11], series1[12], series1[13]);
-        //jTextArea1.append("Test: " + test2 + "\n");
-    }//GEN-LAST:event_jButton1ActionPerformed
+		// Predict next values
+        double test1 = pn.predictNext(series[10], series[11], series[12]);
+        tfld_Predicted1.setText(String.valueOf(test1));
+        double test2 = pn.predictNext(series[11], series[12], series[13]);
+        tfld_Predicted2.setText(String.valueOf(test2));
+    }//GEN-LAST:event_btn_CalcActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,9 +222,14 @@ public class Frame_Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton btn_Calc;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pnl_Chart;
+    private javax.swing.JTextField tfld_Actual1;
+    private javax.swing.JTextField tfld_Actual2;
+    private javax.swing.JTextField tfld_Predicted1;
+    private javax.swing.JTextField tfld_Predicted2;
     // End of variables declaration//GEN-END:variables
 }
